@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 function Cart() {
-  const cart = useSelector((state) => state.addToCart);
+  const cart = useSelector((state) => state.ShoppingCartReducer);
   const count = cart.quantity;
+
+  const [book, setItems] = useState({});
+
+  useEffect(() => {
+    fetchItem();
+  }, []);
+
+  const fetchItem = async () => {
+    const item = await fetch(
+      "http://localhost:2315/api/Books/GetBook/" + cart.bookId
+    );
+    const book = await item.json();
+    setItems(book);
+  };
+
   return count > 0 ? (
     <div
       className="card text-white  bg-success mb-3"
@@ -12,7 +27,8 @@ function Cart() {
       <div className="card-header">Hurray !!!</div>
       <div className="card-body">
         <h4 className="card-title">{count} Books added </h4>
-        <p className="card-text">Proceed to checkout </p>
+        <p className="card-text">{book.bookName}</p>
+        <button className="btn btn-warning">Checkout</button>
       </div>
     </div>
   ) : (

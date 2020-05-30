@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import logo from "./images/books.jpg";
-import { connect, useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/actions";
-import { useSelector, useDispatchsp } from "react-redux";
-
+import { connect } from "react-redux";
+import { AddToCart, BuyNow } from "../redux/actions/actions";
+import { withRouter } from "react-router-dom";
 class Book extends Component {
   state = {};
   constructor(props) {
     super(props);
   }
-
   handleAddToCart = (id) => {
-    this.props.addToCart(id);
+    this.props.AddToCart(id);
+  };
+
+  handleBuyNow = (id) => {
+    this.props.BuyNow(id);
+    this.props.history.push("/cart");
   };
 
   render() {
@@ -45,7 +48,11 @@ class Book extends Component {
               Add to cart
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn btn-success">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => this.handleBuyNow(this.props.data.id)}
+            >
               Buy Now
             </button>
           </div>
@@ -54,4 +61,4 @@ class Book extends Component {
     );
   }
 }
-export default connect(null, { addToCart })(Book);
+export default withRouter(connect(null, { AddToCart, BuyNow })(Book));

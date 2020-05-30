@@ -55,7 +55,16 @@ export class Books extends Component {
         (error) => {
           this.setState({
             isLoaded: true,
-            error,
+            items: [
+              { id: 1, bookName: "Harry potter", author: "JKR" },
+              { id: 2, bookName: "Goblet of fire", author: "JKR" },
+              { id: 6, bookName: "Two state", author: "chetan bhagat" },
+              { id: 10, bookName: "Quantico", author: "rusk" },
+              { id: 11, bookName: "Casino Royale", author: "Boon" },
+              { id: 12, bookName: "swades", author: "AGPP" },
+              { id: 13, bookName: "Jumanji", author: "Zoom" },
+              { id: 14, bookName: "The Monk sold his farrie", author: "scott" },
+            ],
           });
         }
       );

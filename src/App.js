@@ -8,11 +8,12 @@ import { Pricing } from "./components/pricing";
 import { About } from "./components/about";
 import Cart from "./components/cart";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import history from "./history";
 
 function App() {
   return (
     <React.Fragment>
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <NavBar></NavBar>
         <div className="App-header">
           <Switch>

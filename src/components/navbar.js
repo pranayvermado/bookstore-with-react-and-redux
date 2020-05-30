@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import cart from "./images/cart.png";
+import cartImage from "./images/cart.png";
+import { useSelector } from "react-redux";
+
 export const NavBar = () => {
+  const cart = useSelector((state) => state.ShoppingCartReducer);
+  const count = cart.quantity;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/">
@@ -39,7 +43,8 @@ export const NavBar = () => {
         </ul>
         <Link to="/cart">
           <div className="form-inline my-2 my-lg-0">
-            <img className="cart" src={cart}></img>
+            <img className="cart" src={cartImage}></img>
+            <span className="badge">{count}</span>
           </div>
         </Link>
       </div>
