@@ -16,15 +16,15 @@ export class Books extends Component {
       items: [],
       item: {},
     };
-    console.log("books Constructor");
+    console.log("1 books Constructor");
   }
 
   componentWillMount() {
-    console.log("books componentWillMount");
+    console.log("2 books componentWillMount");
   }
 
   render() {
-    console.log("books render");
+    console.log("3 books render");
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -42,7 +42,7 @@ export class Books extends Component {
   }
 
   componentDidMount() {
-    console.log("books componentDidMount");
+    console.log("4 books componentDidMount");
     fetch("http://localhost:2315/api/Books")
       .then((res) => res.json())
       .then(
@@ -71,20 +71,20 @@ export class Books extends Component {
   }
 
   componentWillReceiveProps() {
-    console.log("books componentWillReceiveProps");
+    console.log("5 books componentWillReceiveProps");
   }
 
   shouldComponentUpdate() {
-    console.log("books componentWillReceiveProps");
+    console.log("6 books shouldComponentUpdate");
     return true;
   }
 
   componentWillUpdate() {
-    console.log("books   componentWillUpdate");
+    console.log("7 books   componentWillUpdate");
     return true;
   }
 
   componentDidUpdate() {
-    console.log("books   componentDidUpdate");
+    console.log("8 books   componentDidUpdate");
   }
 }

@@ -16,9 +16,11 @@ class Book extends Component {
     this.props.BuyNow(id);
     this.props.history.push("/cart");
   };
+  componentDidMount() {
+    console.log("1 book componentDidMount");
+  }
 
   render() {
-    console.log(this.props.data);
     const mystyle = {
       height: "200px",
       width: "100%",

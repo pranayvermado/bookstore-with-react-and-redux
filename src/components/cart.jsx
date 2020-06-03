@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-function Cart() {
+function Cart(props) {
   const cart = useSelector((state) => state.ShoppingCartReducer);
   const count = cart.quantity;
 
@@ -19,16 +20,25 @@ function Cart() {
     setItems(book);
   };
 
+  const checkout = () => {
+    console.log(props.history);
+    props.history.push("/checkout");
+  };
+  const handelContinueShopping = () => {
+    props.history.push("/Books");
+  };
+
   return count > 0 ? (
     <div
       className="card text-white  bg-success mb-3"
       style={{ maxwidth: "20rem" }}
     >
-      <div className="card-header">Hurray !!!</div>
+      <div className="card-header">Hurray !!! {count} Books added </div>
       <div className="card-body">
-        <h4 className="card-title">{count} Books added </h4>
         <p className="card-text">{book.bookName}</p>
-        <button className="btn btn-warning">Checkout</button>
+        <button className="btn btn-warning" onClick={checkout}>
+          Checkout
+        </button>
       </div>
     </div>
   ) : (
@@ -36,10 +46,13 @@ function Cart() {
       className="card text-white bg-warning mb-3"
       style={{ maxwidth: "20rem" }}
     >
-      <div className="card-header">oops</div>
+      <div className="card-header">
+        <h4>oops 0 Books</h4>
+      </div>
       <div className="card-body">
-        <h4 className="card-title">0 Books </h4>
-        <p className="card-text">Please Add Books</p>
+        <button className="btn btn-primary" onClick={handelContinueShopping}>
+          Continue Shopping
+        </button>
       </div>
     </div>
   );
