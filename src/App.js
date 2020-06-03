@@ -7,6 +7,8 @@ import { Books } from "./components/books";
 import { Pricing } from "./components/pricing";
 import { About } from "./components/about";
 import Cart from "./components/cart";
+import Checkout from "./components/checkout";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import history from "./history";
 
@@ -22,6 +24,7 @@ function App() {
             <Route exact path="/Pricing" component={Pricing}></Route>
             <Route exact path="/About" component={About}></Route>
             <Route exact path="/Cart" component={Cart}></Route>
+            <Route exact path="/Checkout" component={Checkout}></Route>
           </Switch>
         </div>
         <Footer></Footer>
