@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { ResetCart } from "../redux/actions/actions";
+import { connect } from "react-redux";
 class Checkout extends Component {
   state = {
     contactPerson: "",
@@ -30,6 +31,7 @@ class Checkout extends Component {
     if (this.validAddress()) {
       //alert(JSON.stringify(this.state));
       this.setState({ isSucess: true });
+      this.props.ResetCart();
     }
     return;
   };
@@ -180,9 +182,9 @@ class Checkout extends Component {
         </React.Fragment>
       );
     } else {
-      return <h1>Thankyou</h1>;
+      return <h1>Thank you for shopping with us.</h1>;
     }
   }
 }
 
-export default Checkout;
+export default connect(null, { ResetCart })(Checkout)

@@ -14,9 +14,10 @@ function Cart(props) {
 
   const fetchItem = async () => {
     const item = await fetch(
-      "http://localhost:2315/api/Books/GetBook/" + cart.bookId
+      "https://fortnite-api.theapinetwork.com/store/get"
     );
     const book = await item.json();
+    console.log(book)
     setItems(book);
   };
 
