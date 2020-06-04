@@ -34035,3 +34035,9 @@ node_modules/yargs/README.md
 node_modules/yargs/yargs.js
 *.gz
 *.json
+*.ico
+*.html
+*.html
+*.png
+*.txt
+*.js
