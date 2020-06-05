@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Book from "./book";
-
+import ViewSelector from "./viewSelector";
+import BooksTableView from "./booksTableView";
 export class Books extends Component {
   state = {
     error: null,
     isLoaded: false,
     items: [],
     item: {},
+    isGridMode: true,
   };
   constructor() {
     super();
@@ -14,7 +16,7 @@ export class Books extends Component {
       error: null,
       isLoaded: false,
       items: [],
-      item: {},
+      isGridMode: "GRID",
     };
     console.log("1 books Constructor");
   }
@@ -23,19 +25,33 @@ export class Books extends Component {
     console.log("2 books componentWillMount");
   }
 
+  viewMode = (viewData) => {
+    if (viewData != this.state.isGridMode) {
+      this.setState({ isGridMode: viewData });
+    }
+  };
+
   render() {
-    console.log("3 books render");
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items, isGridMode } = this.state;
+    const renderView = () => {
+      if (isGridMode == "TABLE") {
+        return <BooksTableView data={items}></BooksTableView>;
+      } else {
+        return items.map((item) => <Book key={item.id} data={item}></Book>);
+      }
+    };
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
-          {items.map((item) => (
-            <Book key={item.id} data={item}></Book>
-          ))}
+        <div className="App">
+          <div style={{ float: "right" }}>
+            <ViewSelector onToggle={this.viewMode}></ViewSelector>
+          </div>
+          <div>{renderView()}</div>
         </div>
       );
     }
