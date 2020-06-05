@@ -34046,3 +34046,4 @@ node_modules/yargs/yargs.js
 *.jpg
 *.cmd
 *.ps1
+*.md
