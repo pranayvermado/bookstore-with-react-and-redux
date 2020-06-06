@@ -55,8 +55,8 @@ class BookTableView extends Component {
     debugger;
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map((node) => node.data);
-    
-    if (selectedData.length == 0) return;
+
+    if (selectedData.length === 0) return;
     // const selectedDataStringPresentation = selectedData
     //   .map((node) => node.bookName + " " + node.id)
     //   .join(", ");

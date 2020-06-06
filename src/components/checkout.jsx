@@ -21,9 +21,6 @@ class Checkout extends Component {
     },
     isSucess: false,
   };
-  constructor(props) {
-    super(props);
-  }
 
   handelFormSubmit = (e) => {
     e.preventDefault();
@@ -187,4 +184,4 @@ class Checkout extends Component {
   }
 }
 
-export default connect(null, { ResetCart })(Checkout)
+export default connect(null, { ResetCart })(Checkout);

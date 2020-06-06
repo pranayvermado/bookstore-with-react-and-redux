@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import Book from "./book";
+import BookGridView from "./booksGridView";
 import ViewSelector from "./viewSelector";
 import BooksTableView from "./booksTableView";
-export class Books extends Component {
+import { connect } from "react-redux";
+import { SaveBookList } from "../redux/actions/actions";
+import store from "../redux/store";
+class Books extends Component {
   state = {
     error: null,
     isLoaded: false,
@@ -26,7 +29,7 @@ export class Books extends Component {
   }
 
   viewMode = (viewData) => {
-    if (viewData != this.state.isGridMode) {
+    if (viewData !== this.state.isGridMode) {
       this.setState({ isGridMode: viewData });
     }
   };
@@ -34,10 +37,10 @@ export class Books extends Component {
   render() {
     const { error, isLoaded, items, isGridMode } = this.state;
     const renderView = () => {
-      if (isGridMode == "TABLE") {
+      if (isGridMode === "TABLE") {
         return <BooksTableView data={items}></BooksTableView>;
       } else {
-        return items.map((item) => <Book key={item.id} data={item}></Book>);
+        return <BookGridView data={items}></BookGridView>;
       }
     };
 
@@ -57,33 +60,34 @@ export class Books extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log("4 books componentDidMount");
-    fetch("http://localhost:2315/api/Books")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            items: [
-              { id: 1, bookName: "Harry potter", author: "JKR" },
-              { id: 2, bookName: "Goblet of fire", author: "JKR" },
-              { id: 6, bookName: "Two state", author: "chetan bhagat" },
-              { id: 10, bookName: "Quantico", author: "rusk" },
-              { id: 11, bookName: "Casino Royale", author: "Boon" },
-              { id: 12, bookName: "swades", author: "AGPP" },
-              { id: 13, bookName: "Jumanji", author: "Zoom" },
-              { id: 14, bookName: "The Monk sold his farrie", author: "scott" },
-            ],
-          });
-        }
-      );
+  async componentDidMount() {
+    const storage = store.getState().BookListReducer.books;
+    if (storage && storage.length > 0) {
+      this.setState({
+        isLoaded: true,
+        items: storage,
+      });
+    } else {
+      const response = await fetch(`http://localhost:2315/api/Books`);
+      let json = await response.json();
+      if (!json) {
+        json = [
+          { id: 1, bookName: "Harry potter", author: "JKR" },
+          { id: 2, bookName: "Goblet of fire", author: "JKR" },
+          { id: 6, bookName: "Two state", author: "chetan bhagat" },
+          { id: 10, bookName: "Quantico", author: "rusk" },
+          { id: 11, bookName: "Casino Royale", author: "Boon" },
+          { id: 12, bookName: "swades", author: "AGPP" },
+          { id: 13, bookName: "Jumanji", author: "Zoom" },
+          { id: 14, bookName: "The Monk sold his farrie", author: "scott" },
+        ];
+      }
+      this.setState({
+        isLoaded: true,
+        items: json,
+      });
+      this.props.SaveBookList(json);
+    }
   }
 
   componentWillReceiveProps() {
@@ -104,3 +108,4 @@ export class Books extends Component {
     console.log("8 books   componentDidUpdate");
   }
 }
+export default connect(null, { SaveBookList })(Books);

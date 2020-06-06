@@ -5,9 +5,7 @@ import { AddToCart, BuyNow } from "../redux/actions/actions";
 import { withRouter } from "react-router-dom";
 class Book extends Component {
   state = {};
-  constructor(props) {
-    super(props);
-  }
+
   handleAddToCart = (id) => {
     this.props.AddToCart(id);
   };
@@ -37,7 +35,7 @@ class Book extends Component {
               Author : {this.props.data.author.toUpperCase()}
             </h5>
           </div>
-          <img style={mystyle} src={logo} alt="Card image"></img>
+          <img style={mystyle} src={logo} alt="Card"></img>
           <div className="card-body">
             <p className="card-text">Price : $10</p>
           </div>

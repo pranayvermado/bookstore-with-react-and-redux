@@ -18,7 +18,7 @@ const ShoppingCartReducer = (state = initialState, action) => {
       };
     }
     case BUY_NOW: {
-      const { id, content } = action.payload;
+      const { id } = action.payload.id;
       return {
         ...state,
         allBookIds: [...state.allBookIds, id],
@@ -26,7 +26,7 @@ const ShoppingCartReducer = (state = initialState, action) => {
         bookId: id,
       };
     }
-    case RESET_CART: {     
+    case RESET_CART: {
       return {
         ...state,
         allBookIds: [],

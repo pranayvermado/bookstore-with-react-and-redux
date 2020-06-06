@@ -1,4 +1,4 @@
-import { ADD_TO_CART, BUY_NOW, RESET_CART } from "./actionTypes";
+import { ADD_TO_CART, BUY_NOW, RESET_CART, SAVE_BOOKS } from "./actionTypes";
 
 export const AddToCart = (content) => ({
   type: ADD_TO_CART,
@@ -16,6 +16,13 @@ export const BuyNow = (content) => ({
   },
 });
 
-export const ResetCart = (content) => ({
-  type: RESET_CART,  
+export const ResetCart = () => ({
+  type: RESET_CART,
+});
+
+export const SaveBookList = (content) => ({
+  type: SAVE_BOOKS,
+  payload: {
+    content,
+  },
 });

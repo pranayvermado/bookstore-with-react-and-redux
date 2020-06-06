@@ -16,13 +16,9 @@ export function Home() {
       </p>
       <p className="lead">
         <Link to="/Books">
-          <a
-            className="btn btn-primary btn-lg"
-            href="javascript:void();"
-            role="button"
-          >
+          <label className="btn btn-primary btn-lg" role="button">
             Book Store
-          </a>
+          </label>
         </Link>
       </p>
     </div>

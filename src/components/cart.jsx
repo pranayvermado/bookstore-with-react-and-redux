@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 function Cart(props) {
   const cart = useSelector((state) => state.ShoppingCartReducer);
@@ -17,7 +17,6 @@ function Cart(props) {
       "https://fortnite-api.theapinetwork.com/store/get"
     );
     const book = await item.json();
-    console.log(book)
     setItems(book);
   };
 

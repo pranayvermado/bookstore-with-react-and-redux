@@ -1,7 +1,4 @@
-import React from "react";
-
 const Pricing = () => {
-
-  return("pricing")
+  return "pricing";
 };
 export default Pricing;

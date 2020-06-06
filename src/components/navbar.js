@@ -43,7 +43,7 @@ export const NavBar = () => {
         </ul>
         <Link to="/cart">
           <div className="form-inline my-2 my-lg-0">
-            <img className="cart" src={cartImage}></img>
+            <img className="cart" src={cartImage} alt="Cart"></img>
             <span className="badge">{count}</span>
           </div>
         </Link>
