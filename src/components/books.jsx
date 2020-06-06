@@ -50,12 +50,16 @@ class Books extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App">
-          <div style={{ float: "right" }}>
-            <ViewSelector onToggle={this.viewMode}></ViewSelector>
-          </div>
-          <div>{renderView()}</div>
-        </div>
+        <table width="100%">
+          <tr>
+            <td align="right">
+              <ViewSelector onToggle={this.viewMode}></ViewSelector>
+            </td>
+          </tr>
+          <tr>
+            <td>{renderView()}</td>
+          </tr>
+        </table>
       );
     }
   }
