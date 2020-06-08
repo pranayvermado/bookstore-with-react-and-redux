@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class ViewSelector extends Component {
   render() {
     return (
-      <div className="btn-group btn-group-toggle" data-toggle="buttons">
+      <div className="btn-group btn-group-toggle" data-toggle="buttons" style={{'margin-bottom': '15px'}}>
         <label
           className="btn btn-primary btn-sm"
           onClick={() => this.props.onToggle("GRID")}

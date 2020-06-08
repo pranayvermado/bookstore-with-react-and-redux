@@ -27,19 +27,19 @@ class Book extends Component {
     return (
       <div style={{ width: "400px", float: "left", padding: "10px" }}>
         <div className="card mb-5">
-          <h3 className="card-header text-white bg-dark ">
+          <h3 className="card-header">
             {this.props.data.bookName.toUpperCase()}
           </h3>
-          <div className="card-body text-white bg-dark">
+          <div className="card-body">
             <h5 className="card-title">
               Author : {this.props.data.author.toUpperCase()}
             </h5>
           </div>
           <img style={mystyle} src={logo} alt="Card"></img>
-          <div className="card-body text-white bg-dark">
+          <div className="card-body">
             <p className="card-text">Price : $10</p>
           </div>
-          <div className="card-footer text-white bg-dark text-muted">
+          <div className="card-footer text-white">
             <table width="100%">
               <tr>
                 <td align="left">

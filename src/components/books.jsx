@@ -51,14 +51,23 @@ class Books extends Component {
     } else {
       return (
         <table width="100%">
-          <tr>
-            <td align="right">
-              <ViewSelector onToggle={this.viewMode}></ViewSelector>
-            </td>
-          </tr>
-          <tr>
-            <td>{renderView()}</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>               
+                <ViewSelector  onToggle={this.viewMode}></ViewSelector>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{renderView()}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+            </tr>
+          </tfoot>
         </table>
       );
     }
@@ -72,10 +81,18 @@ class Books extends Component {
         items: storage,
       });
     } else {
-      const response = await fetch(`http://localhost:2315/api/Books`);
-      let json = await response.json();
-      if (!json) {
-        json = [
+      try {       
+        const response = await fetch(`${process.env.REACT_APP_BOOK_API}api/Books`);
+        let json = await response.json();
+        this.setState({
+          isLoaded: true,
+          items: json,
+        });
+        this.props.SaveBookList(json);
+      } catch (e) {
+        console.error(e)
+      } finally {
+        const json = [
           { id: 1, bookName: "Harry potter", author: "JKR" },
           { id: 2, bookName: "Goblet of fire", author: "JKR" },
           { id: 6, bookName: "Two state", author: "chetan bhagat" },
@@ -85,12 +102,12 @@ class Books extends Component {
           { id: 13, bookName: "Jumanji", author: "Zoom" },
           { id: 14, bookName: "The Monk sold his farrie", author: "scott" },
         ];
+        this.setState({
+          isLoaded: true,
+          items: json,
+        });
+        this.props.SaveBookList(json);
       }
-      this.setState({
-        isLoaded: true,
-        items: json,
-      });
-      this.props.SaveBookList(json);
     }
   }
 
